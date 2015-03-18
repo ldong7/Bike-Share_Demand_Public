@@ -3,10 +3,12 @@ library(randomForest)
 
 set.seed(30)
 rm(list = setdiff(ls(), lsf.str()))
-setwd('~/Desktop/module3//MSAN_630/bikeSharingDemand/') # Daniel
-setwd('~/github/bikeSharingDemand/') # Steven
+#####################################################
+### Before running the script
+### please set the directory at <your path>/Bike-Share_Demand_Public
+#####################################################
 
-source('./bikeShareMunge.R')
+source('./source/bikeShareMunge.R')
 
 ######################################################
 ### Data ingestion
@@ -84,14 +86,14 @@ rf22_ <- randomForest(count ~ count.1 + day.part + holiday + hour + humidity + i
 rf23_ <- randomForest(count ~ count.1 + day.part + holiday + hour + humidity + is.daylight + is.working.hour + month + season + temp + weather + windspeed + workingday + year + diff + weekday,data=df_modified23 ,na.action=na.omit)
 rf24_ <- randomForest(count ~ count.1 + day.part + holiday + hour + humidity + is.daylight + is.working.hour + month + season + temp + weather + windspeed + workingday + year + diff + weekday,data=df_modified24 ,na.action=na.omit)
 
-#save(rf01_,rf02_,rf03_,rf04_,rf05_,rf06_,rf07_,rf08_,rf09_,rf10_,rf11_,rf12_,rf13_,rf14_,rf15_,rf16_,rf17_,rf18_,rf19_,rf20_,rf21_,rf22_,rf23_,rf24_,file='rfxx_.RData')
-#save(rf01_,rf02_,rf03_,rf04_,rf05_,rf06_,rf07_,rf08_,rf09_,rf10_,rf11_,rf12_,rf13_,rf14_,rf15_,rf16_,rf17_,rf18_,rf19_,rf20_,rf21_,rf22_,rf23_,rf24_,file='rfxx.3.RData')
+
+save(rf01_,rf02_,rf03_,rf04_,rf05_,rf06_,rf07_,rf08_,rf09_,rf10_,rf11_,rf12_,rf13_,rf14_,rf15_,rf16_,rf17_,rf18_,rf19_,rf20_,rf21_,rf22_,rf23_,rf24_,file='./model/rfxx_v2.RData')
 
 ################################################################
 ### reload model from R image
 ################################################################
 
-load('./model/rfxx_v2.RData')
+load('./models/rfxx_v2.RData')
 rfxx <- list(rf01_,rf02_,rf03_,rf04_,rf05_,rf06_,rf07_,rf08_,rf09_,rf10_,rf11_,rf12_,rf13_,rf14_,rf15_,rf16_,rf17_,rf18_,rf19_,rf20_,rf21_,rf22_,rf23_,rf24_)
 
 ################################################################
